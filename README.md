@@ -34,12 +34,12 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 Then, add the following code within the Gemfile of your Jekyll project:
 
-    ```ruby
-    group :jekyll_plugins do
-      ...
-      gem 'jekyll-gallery-plugin'
-    end
-    ```
+```ruby
+group :jekyll_plugins do
+  ...
+  gem 'jekyll-gallery-plugin'
+end
+```
 
 ## Configuration
 
@@ -62,6 +62,35 @@ The assigned values are the default values.
 *collections_dir*
 : This is where can specify a folder name for each collection, by default it takes the slug of the
   collection itself.
+
+Within the default template must add the code to recall the Glightbox CSS and Javascript scripts, the
+instructions are pretty standard:
+1. The CSS file goes in the *head* section
+2. The Javascript library file in before the *body* closing tag
+3. The Javascript code before the *body* tag and after the previous mentioned Javascript library
+
+Here an example using the CDN resources:
+```html
+<html>
+    <head>
+        <meta charset="utf-8" >
+        ...
+        <!-- (1) -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+        ...
+    </head>
+
+    ...
+
+    <!-- (2) -->
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+
+    <!-- (3) -->
+    <script type="text/javascript">
+        const lightbox = GLightbox();
+    </script>
+</html>
+```
 
 ## Usage
 
@@ -110,9 +139,11 @@ For example to render the second gallery:
 
 More info is available at:
 - the [project page on the Freeaptitude blog][project_page];
-- the [Jekyll-Gallery Github wiki][jekyll_gallery_wiki].
+- the [Jekyll-Gallery Github wiki][jekyll_gallery_wiki];
+- the [Glightbox README page][glightbox_readme].
 
 [glightbox]: https://biati-digital.github.io/glightbox/ "Glightbox Javascript plugin Home page"
+[glightbox_readme]: https://github.com/biati-digital/glightbox#usage "Glightbox README page - Usage"
 [seotag]: https://github.com/jekyll/jekyll-seo-tag "Jekyll-Seo-Tag Github repository"
 [wf_main]: https://github.com/fabiomux/jekyll-gallery-plugin/actions/workflows/main.yml
 [gem_version]: https://badge.fury.io/rb/jekyll-gallery-plugin
