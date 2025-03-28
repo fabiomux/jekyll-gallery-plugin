@@ -23,7 +23,7 @@ module Jekyll
       end
 
       def self.config
-        @@config ||= gconfig["jekyll-gallery"].freeze
+        @@config ||= (gconfig["jekyll-gallery"] || {}).freeze
       end
 
       def self.selector
