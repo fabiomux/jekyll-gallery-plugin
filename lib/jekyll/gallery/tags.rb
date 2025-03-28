@@ -60,6 +60,7 @@ module Jekyll
         @g_class = params["g_class"] || ""
 
         @collection = context["#{Config.selector}.collection"] || context["page.collection"]
+        @collection = context["#{Config.selector}.layout"] || context["page.layout"] if @collection.nil?
 
         @desc_position = params["desc_position"] || Config.config["desc_position"] || "bottom"
 
